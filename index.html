@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吳貫玉｜專案作品－影片網頁</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <section id="intro">
+        <h2 class="text-center m-3 fw-bold">吳貫玉｜專案作品－影片網頁</h2>
+        <ul>
+            <li>應用 HTML、CSS、JavaScript、Bootstrap、jQuery，搭建響應式網頁。</li>
+            <li>使用 Fetch 串接會員 API，並取得 Vimeo、Youtube 影片平台的相關資訊。</li>
+            <li>應用 Ajax 技術取得 XML 資料，實現動態網頁內容。</li>
+            <li>開發 C# 工具批次擷取影片縮圖，提升網頁呈現效果。</li>
+        </ul>
+        <button type="button" class="btn btn-blue">
+            <a href="https://digitalmaster.knsh.com.tw/all/video/v1/j/mandarin.html?l1=7%E4%B8%8B" target="_blank">網站連結</a>
+        </button>
+    </section>
+
+    <section>
+        <div id="videoContainer">
+            <iframe class="videoPlayer" src="https://drive.google.com/file/d/1LBynoeDEkNx6i6Bj6wv_pY6YEj-8g-Jn/preview"
+                frameborder="0"></iframe>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row g-3">
+                <div class="col-12 col-md-6">
+                    <div class="thumbnail-container">
+                        <img src="img/01.png" alt="Image 1" class="thumbnail">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="thumbnail-container">
+                        <img src="img/02.png" alt="Image 2" class="thumbnail">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="thumbnail-container">
+                        <img src="img/03.png" alt="Image 3" class="thumbnail">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="thumbnail-container">
+                        <img src="img/04.png" alt="Image 4" class="thumbnail">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="thumbnail-container">
+                        <img src="img/05.png" alt="Image 5" class="thumbnail">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <div class="image-container">
+                                <button class="btn btn-prev">&lt;</button>
+                                <img id="enlargedImage" src="" alt="Enlarged Image">
+                                <button class="btn btn-next">&gt;</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let currentImageIndex = 0;
+            let imageList = $('.thumbnail').map(function () {
+                return $(this).attr('src');
+            }).get();
+
+            $('.thumbnail').click(function () {
+                let imgSrc = $(this).attr('src');
+                currentImageIndex = imageList.indexOf(imgSrc);
+                $('#enlargedImage').attr('src', imgSrc);
+                $('#imageModal').modal('show');
+            });
+
+            $('.btn-prev').click(function () {
+                currentImageIndex = (currentImageIndex - 1 + imageList.length) % imageList.length;
+                $('#enlargedImage').attr('src', imageList[currentImageIndex]);
+            });
+
+            $('.btn-next').click(function () {
+                currentImageIndex = (currentImageIndex + 1) % imageList.length;
+                $('#enlargedImage').attr('src', imageList[currentImageIndex]);
+            });
+
+            $(document).keydown(function (e) {
+                if ($('#imageModal').hasClass('show')) {
+                    if (e.keyCode == 37) { // left arrow
+                        $('.btn-prev').click();
+                    } else if (e.keyCode == 39) { // right arrow
+                        $('.btn-next').click();
+                    } else if (e.keyCode == 27) { // esc key
+                        $('#imageModal').modal('hide');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

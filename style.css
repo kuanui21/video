@@ -1,0 +1,85 @@
+section {
+    padding: 2rem;
+    display: grid;
+    place-items: center;
+}
+
+a,
+a:hover {
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+#intro {
+    background-color: #fff4e6;
+}
+
+.btn-blue {
+    background-color: #2190d6;
+}
+
+.btn-blue:hover {
+    background-color: #2d86bd;
+}
+
+#videoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.videoPlayer {
+    max-width: 1280px;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 16/9;
+    box-shadow: 0 0 10px rgba(70, 24, 24, 0.1);
+}
+
+.thumbnail-container {
+    margin-bottom: 1rem;
+}
+
+.thumbnail {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.modal-dialog {
+    max-width: 1280px;
+    width: 90%;
+    margin: 1.75rem auto;
+}
+
+.image-container {
+    position: relative;
+}
+
+.btn-prev,
+.btn-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+}
+
+.btn-prev {
+    left: 10px;
+}
+
+.btn-next {
+    right: 10px;
+}
+
+#enlargedImage {
+    max-width: 100%;
+    height: auto;
+}
